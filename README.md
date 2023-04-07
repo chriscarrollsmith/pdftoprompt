@@ -1,5 +1,7 @@
 # PDFtoPrompt
 
+[![PyPI version](https://badge.fury.io/py/pdftoprompt.svg)](https://badge.fury.io/py/pdftoprompt)
+
 Existing libraries for using GPT-4 to extract information from a PDF fil typically combine GPT-4 with word searching, indexing, and segmentation. Those strategies work reasonably, but they have one significant limitation: they deprive the LLM of "big picture" context.
 
 PDFtoPrompt takes a different strategy. Inspired by Twitter user [@gfodor](https://twitter.com/gfodor)'s experiments with [text compression](https://twitter.com/gfodor/status/1643415357615640577), it uses GPT-4 to compress or distill a PDF file's entire informational content to below the length limit of a single ChatGPT prompt. 
