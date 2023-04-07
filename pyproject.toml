@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "pdftoprompt"
+version = "0.1.0"
+description = "Python library to abbreviate a PDF file to GPT 8k prompt length"
+authors = ["Christopher Carroll Smith <chriscarrollsmith@gmail.com>"]
+readme = "README.md"
+packages = [{include = "pdftoprompt"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+pytesseract = "^0.3.10"
+pdf2image = "^1.16.3"
+openai = "^0.27.4"
+pypdf = "^3.7.0"
+python-dotenv = "^1.0.0"
+requests = "^2.28.2"
+
+
+[tool.poetry.group.tests.dependencies]
+pytest = "^7.2.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

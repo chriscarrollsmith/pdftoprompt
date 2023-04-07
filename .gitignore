@@ -1,0 +1,6 @@
+.env
+/.venv
+/.pytest_cache
+/pdftoprompt/__pycache__
+/.vscode
+/tests/__pycache__
