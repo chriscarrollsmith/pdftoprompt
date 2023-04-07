@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pdftoprompt"
-version = "0.1.1"
+version = "0.1.2"
 description = "Python library to abbreviate a PDF file to GPT 8k prompt length"
 authors = ["Christopher Carroll Smith <chriscarrollsmith@gmail.com>"]
 readme = "README.md"

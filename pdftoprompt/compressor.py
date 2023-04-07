@@ -8,6 +8,7 @@ from typing import Optional
 from tempfile import NamedTemporaryFile
 import requests
 from urllib.parse import urlparse
+import re
 
 
 def is_url(path):
@@ -78,14 +79,33 @@ def calculate_compression_factor(text):
 
 
 def chunk_text(text, max_tokens=3500):
-    tokens = len(text) // 4
+    text = text.replace('\n', ' ')
+    chunk_length = max_tokens * 4
+    sentences = re.split(r'(?<!\w\.\w.)(?<![A-Z][a-z]\.)(?<=\.|\?)\s', text)
     chunks = []
-    start = 0
-    for _ in range(tokens // max_tokens):
-        end = start + max_tokens * 4
-        chunks.append(text[start:end])
-        start = end
-    chunks.append(text[start:])
+    current_chunk = ""
+
+    for sentence in sentences:
+        if len(current_chunk) + len(sentence) + 1 <= chunk_length:
+            current_chunk += sentence
+            if not current_chunk.endswith(('.', '?', '!')):
+                current_chunk += ' '
+        else:
+            if current_chunk:
+                chunks.append(current_chunk.strip())
+            
+            if len(sentence) > chunk_length:
+                start = 0
+                while start < len(sentence):
+                    end = min(start + chunk_length, len(sentence))
+                    chunks.append(sentence[start:end].strip())
+                    start = end
+            else:
+                current_chunk = sentence + ' '
+
+    if current_chunk:
+        chunks.append(current_chunk.strip())
+
     return chunks
 
 
